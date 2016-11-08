@@ -167,7 +167,12 @@
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
-                <version>3.8</version>
+                <version>3.14</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>3.14</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/com.opensymphony/xwork -->
             <dependency>
@@ -175,52 +180,96 @@
                 <artifactId>xwork</artifactId>
                 <version>2.1.2</version>
             </dependency>
+            <!-- https://github.com/ysc/QuestionAnsweringSystem -->
+            <dependency>
+                <groupId>org.apdplat</groupId>
+                <artifactId>deep-qa</artifactId>
+                <version>1.1</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>1.8.5</version>
+              <!--  <version>2.0.3</version>-->
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.tika/tika -->
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika</artifactId>
+                <version>0.2</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.tika/tika-app -->
+            <dependency>
+                <groupId>org.apache.tika</groupId>
+                <artifactId>tika-app</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+
+            <!-- https://mvnrepository.com/artifact/org.jpedal/jpedal-lgpl -->
+            <dependency>
+                <groupId>org.jpedal</groupId>
+                <artifactId>jpedal-lgpl</artifactId>
+                <version>4.74b27</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j -->
+            <dependency>
+                <groupId>com.ibm.icu</groupId>
+                <artifactId>icu4j</artifactId>
+                <version>4.8.1</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
-<!--
-    <url>http://github.com/sryza/aas</url>
-    <inceptionYear>2014</inceptionYear>
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <id>sryza</id>
-            <name>Sandy Ryza</name>
-            <organization>Cloudera</organization>
-        </developer>
-        <developer>
-            <id>jwills</id>
-            <name>Josh Wills</name>
-            <organization>Cloudera</organization>
-        </developer>
-        <developer>
-            <id>srowen</id>
-            <name>Sean Owen</name>
-            <organization>Cloudera</organization>
-        </developer>
-        <developer>
-            <id>laserson</id>
-            <name>Uri Laserson</name>
-            <organization>Cloudera</organization>
-        </developer>
-    </developers>
+    <!--
+        <url>http://github.com/sryza/aas</url>
+        <inceptionYear>2014</inceptionYear>
+        <licenses>
+            <license>
+                <name>The Apache Software License, Version 2.0</name>
+                <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+                <distribution>repo</distribution>
+            </license>
+        </licenses>
+        <developers>
+            <developer>
+                <id>sryza</id>
+                <name>Sandy Ryza</name>
+                <organization>Cloudera</organization>
+            </developer>
+            <developer>
+                <id>jwills</id>
+                <name>Josh Wills</name>
+                <organization>Cloudera</organization>
+            </developer>
+            <developer>
+                <id>srowen</id>
+                <name>Sean Owen</name>
+                <organization>Cloudera</organization>
+            </developer>
+            <developer>
+                <id>laserson</id>
+                <name>Uri Laserson</name>
+                <organization>Cloudera</organization>
+            </developer>
+        </developers>
 
-    <issueManagement>
-        <system>GitHub</system>
-        <url>http://github.com/sryza/aas/issues</url>
-    </issueManagement>
-    <scm>
-        <connection>scm:git:https://github.com/sryza/aas.git</connection>
-        <url>scm:git:https://github.com/sryza/aas.git</url>
-        <developerConnection>scm:git:https://github.com/sryza/aas.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
--->
+        <issueManagement>
+            <system>GitHub</system>
+            <url>http://github.com/sryza/aas/issues</url>
+        </issueManagement>
+        <scm>
+            <connection>scm:git:https://github.com/sryza/aas.git</connection>
+            <url>scm:git:https://github.com/sryza/aas.git</url>
+            <developerConnection>scm:git:https://github.com/sryza/aas.git</developerConnection>
+            <tag>HEAD</tag>
+        </scm>
+    -->
     <prerequisites>
         <maven>${maven.version.min}</maven>
     </prerequisites>
@@ -239,7 +288,7 @@
         <scala.minor.version>2.10</scala.minor.version>
         <scala.complete.version>${scala.minor.version}.6</scala.complete.version>
         <!--<spark.version>1.2.2</spark.version>-->
-        <spark.version>1.5.1</spark.version>
+        <spark.version>1.5.0</spark.version>
     </properties>
 
     <dependencies>
@@ -330,12 +379,46 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-         <!--   <version>3.8</version>-->
+            <!--   <version>3.8</version>-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
         </dependency>
         <dependency>
             <groupId>com.opensymphony</groupId>
             <artifactId>xwork</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apdplat</groupId>
+            <artifactId>deep-qa</artifactId>
+        </dependency>
+
+        <!-- <dependency>
+             <groupId>org.apache.pdfbox</groupId>
+             <artifactId>pdfbox</artifactId>
+         </dpendency>
+ -->
+        <!-- https://mvnrepository.com/artifact/org.apache.tika/tika -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.tika/tika-app -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-app</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.ibm.icu/icu4j -->
+        <dependency>
+            <groupId>com.ibm.icu</groupId>
+            <artifactId>icu4j</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

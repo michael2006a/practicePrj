@@ -95,18 +95,19 @@ object LogisticRegressionWithLBFGSImpl {
 
   def main(args: Array[String]): Unit = {
 
-    //    run("D:\\03datafolder\\data\\input\\0711\\gccallidfs.csv",
-    //      "D:\\03datafolder\\data\\output\\0711\\lrResallidfs_csv")
+        run("D:\\03datafolder\\data\\input\\keywordidfs.csv",
+          "D:\\03datafolder\\data\\output\\0711\\lrkeywordout.csv")
 
     //        val clusterArray = Array(50, 100, 150, 200, 250, 300)
     val clusterArray = Array(30, 50, 100, 150, 0)
     //    val clusterArray = Array(200, 250)
-    for (i <- clusterArray) {
-      var inputbase = "D:\\03datafolder\\data\\input\\0711\\gccallidfs_" + i.toString + ".csv"
-      var outpath = "D:\\03datafolder\\data\\output\\0711\\lrResallidfs_" + i.toString + ".csv"
+//    for (i <- clusterArray) {
+//      var inputbase = "D:\\03datafolder\\data\\input\\0711\\gccallidfs_" + i.toString + ".csv"
+//      var outpath = "D:\\03datafolder\\data\\output\\0711\\lrResallidfs_" + i.toString + ".csv"
+//
+//      run(inputbase, outpath)
+//    }
 
-      run(inputbase, outpath)
-    }
     //    saveLrModel2Local("data/output/lr_tip75idf")
   }
 }

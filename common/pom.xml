@@ -24,6 +24,21 @@
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apdplat</groupId>
+            <artifactId>deep-qa</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tika/tika -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

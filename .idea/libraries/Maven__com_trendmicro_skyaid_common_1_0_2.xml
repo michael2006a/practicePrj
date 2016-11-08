@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.trendmicro.skyaid:common:1.0.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/common/pom.xml!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/common/common-1.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/common/common-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

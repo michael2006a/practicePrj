@@ -3,16 +3,18 @@ package com.trendmicro.mllib
 import java.io.{PrintWriter, File}
 
 import org.apache.commons.io.FileUtils
+import org.apache.spark.ml.classification.RandomForestClassifier
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.tree.RandomForest
 import org.apache.spark.mllib.tree.model.RandomForestModel
 import org.apache.spark.mllib.util.MLUtils
+import org.apache.spark.ml.classification.RandomForestClassificationModel
 
 /**
  * Created by herbert_yin on 2016/6/17.
  */
-object RandomForestImpl {
+  object RandomForestImpl {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("RandomForestClassificationExample").setMaster("local")
     val sc = new SparkContext(conf)
@@ -23,7 +25,7 @@ object RandomForestImpl {
 //    val data = MLUtils.loadLibSVMFile(sc, "D:\\top10inputidfs.csv")
 //    val data = MLUtils.loadLibSVMFile(sc, "D:\\top100idfs.csv")
 //    val data = MLUtils.loadLibSVMFile(sc, "D:\\top100idfs1000w.csv")
-    val data = MLUtils.loadLibSVMFile(sc, "D:\\alltop75idfs.csv")
+    val data = MLUtils.loadLibSVMFile(sc, "D:\\03datafolder\\data\\input\\keywordidfs.csv")
     // Split the data into training and test sets (30% held out for testing)
     val splits = data.randomSplit(Array(0.7, 0.3))
     val (trainingData, testData) = (splits(0), splits(1))
@@ -46,6 +48,9 @@ object RandomForestImpl {
     val model = RandomForest.trainClassifier(trainingData, numClasses, categoricalFeaturesInfo,
       numTrees, featureSubsetStrategy, impurity, maxDepth, maxBins)
 
+    val rfc= new RandomForestClassifier();
+//    RandomForestClassificationModel rfm = RandomForestClassificationModel.fromOld(model, rfc, categoricalFeaturesInfo, numClasses);
+//    println(rfm.featureImportances());
 
     // Evaluate model on test instances and compute test error
     val labelAndPreds = testData.map { point =>
@@ -58,7 +63,7 @@ object RandomForestImpl {
     println("Test Error = " + testErr)
     //    println("Learned classification forest model:\n" + model.toDebugString)
 
-    resultWrite2local("data\\output\\restultop75rf.csv",labelAndPreds.collect())
+    resultWrite2local("D:\\03datafolder\\data\\input\\rfkeywordidfs.csv",labelAndPreds.collect())
     // Save and load model
     //    model.save(sc, "target/tmp/myRandomForestClassificationModel")
     //    val sameModel = RandomForestModel.load(sc, "target/tmp/myRandomForestClassificationModel")

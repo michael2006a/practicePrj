@@ -10,6 +10,7 @@ import jxl.Cell;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -263,7 +264,7 @@ public class ExcelHandle {
                     //判断单元格的类型, 做出相应的转化
                     if (cell.getType() == CellType.LABEL) {
                         Label l = (Label) cell;
-                        l.setString(DataFormatUtil.regReplace(cell.getContents()).replaceAll("[\\t\\n\\r]", "。"));
+                        l.setString(ReplaceUtil.regReplace(cell.getContents()).replaceAll("[\\t\\n\\r\\,]", "。"));
 //                        l.setString(regReplace(cell.getContents()).replaceAll("[\\n\\r]", ""));
                     }
                 }
@@ -331,7 +332,7 @@ public class ExcelHandle {
                     //判断单元格的类型, 做出相应的转化
                     if (cell.getType() == CellType.LABEL) {
                         Label l = (Label) cell;
-                        l.setString(DataFormatUtil.regReplace(cell.getContents()).replaceAll("[\\t\\n\\r]", "。"));
+                        l.setString(ReplaceUtil.regReplace(cell.getContents()).replaceAll("[\\t\\n\\r]", "。"));
 //                        l.setString(regReplace(cell.getContents()).replaceAll("[\\n\\r]", ""));
                     }
                 }
@@ -348,25 +349,93 @@ public class ExcelHandle {
         }
     }
 
+
+  /*  public static void combineKbExcel(File orginalFile, File modifiedFile) {
+        try {
+            Workbook rwb = Workbook.getWorkbook(orginalFile);
+
+            WritableWorkbook wwb = Workbook.createWorkbook(modifiedFile, rwb);//copy
+
+            WritableFont wfc = new WritableFont(WritableFont.ARIAL, 10, WritableFont.NO_BOLD, false,
+
+                    UnderlineStyle.NO_UNDERLINE, jxl.format.Colour.BLUE);
+
+            WritableCellFormat wcfFC = new WritableCellFormat(wfc);
+
+            WritableSheet ws = wwb.getSheet(0);
+
+            //获取Sheet表中所包含的总列数
+            int rsColumns = ws.getColumns();
+            //获取Sheet表中所包含的总行数
+            int rsRows = ws.getRows();
+
+            System.out.println(orginalFile + "lines: " + rsRows);
+            //获取指定单元格的对象引用
+
+            Cell[] caseId = ws.getColumn(2);
+
+            ArrayList<String> caseIdList = new ArrayList<>();
+
+            for (int i = 1; i < caseId.length; i++) {
+                String temp = caseId[i].getContents();
+                if(!caseIdList.contains(temp))
+                    caseIdList.add(temp);
+            }
+
+            for(int k = 0; k<caseIdList.size();k++){
+                String mCaseidStr = caseIdList.get(k);
+                for (int i = 0; i < rsRows; i++) {
+                    Cell cell = ws.getWritableCell(2, i);
+                    if(cell.getContents().equals(mCaseidStr))
+                    for (int j = 2; j < rsColumns; j++) {
+                        if
+
+                    }
+                }
+            }
+            for (int i = 0; i < rsRows; i++) {
+                for (int j = 2; j < rsColumns; j++) {
+                    Cell cell = ws.getWritableCell(j, i);
+//                System.out.println("OriginalRow " + i + ": " + cell.getContents() + " ");
+//                System.out.println("ReplacedRow " + i + ": " + cell.getContents().replaceAll("[\\t\\n\\r]", "").replaceAll("[\\pP‘’“”]", ""));
+                    //判断单元格的类型, 做出相应的转化
+                    if (cell.getType() == CellType.LABEL) {
+                        Label l = (Label) cell;
+                        l.setString(DataFormatUtil.regReplace(cell.getContents()).replaceAll("[\\t\\n\\r\\,]", "。"));
+//                        l.setString(regReplace(cell.getContents()).replaceAll("[\\n\\r]", ""));
+                    }
+                }
+                if (i % 1000 == 0)
+                    System.out.println(i + " lines completed!");
+            }
+
+            wwb.write();
+            wwb.close();
+            rwb.close();
+            System.out.println(modifiedFile + "has been created!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
+
     //测试
     public static void main(String args[]) {
 //        try {
-            //读EXCEL
+        //读EXCEL
 //            ExcelHandle.readExcel("D:/3collom.xls");
 
-            //输出EXCEL
+        //输出EXCEL
 //            File filewrite = new File("F:/红楼人物2.xls");
 //            filewrite.createNewFile();
 //            OutputStream os = new FileOutputStream(filewrite);
 //            ExcelHandle.writeExcel(os);
 
-            //修改EXCEL
+        //修改EXCEL
 //            ExcelHandle.modifyExcel(new File("F:/红楼人物.xls"), new File("F:/红楼人物3.xls"));
 
 //            ExcelHandle.modifyGccXLS(new File("D:\\taskArchieve\\trainoriginal.xls"),new File("D:\\trainModified2.xls"));
 
 //            ExcelHandle.modifyGccXLS(new File("D:\\taskArchieve\\gcc2015.xls"), new File("D:\\gcc2015modified2.xls"));
-
 
 
 //            for (int i = 1; i <= 1; i++) {
@@ -389,6 +458,11 @@ public class ExcelHandle {
 //            e.printStackTrace();
 //        }
 
+//        String inputBase = "D:\\03datafolder\\data\\urlcontent.xls";
+//        String outputBase = "D:\\03datafolder\\data\\urlcontentmodify.xls";
+        String inputBase = "D:\\03datafolder\\data\\input\\kb0830_web_chat_all.xls";
+        String outputBase = "D:\\03datafolder\\data\\input\\kb0830_modified.xls";
+        ExcelHandle.modifyGccXLS(new File(inputBase), new File(outputBase));
         //Java 简单高效处理字符串-删除所有标点
         //http://blog.csdn.net/welcome000yy/article/details/7824429
         String str = ",.!?？，，D_NAME。！；‘’”“《》**dfs  #$%^&()-+1431" +
@@ -404,7 +478,7 @@ public class ExcelHandle {
         System.out.println(str2);
 
         String str3 = str.replaceAll("[\\pC]", "");
-        System.out.println("str3: "+str3);
+        System.out.println("str3: " + str3);
 
         String tttt = "aaaa\n\rbbb";
         System.out.println(tttt);
